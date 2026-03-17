@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-
+/*
 public class bullet : MonoBehaviour
 {
     public float bulletspeed;
@@ -25,3 +25,4 @@ public class bullet : MonoBehaviour
    
    
 }
+*/

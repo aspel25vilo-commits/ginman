@@ -1,5 +1,5 @@
 using UnityEngine;
-
+/*
 public class Followmouse : MonoBehaviour
 {
     private Camera mainCamera;
@@ -27,4 +27,4 @@ public class Followmouse : MonoBehaviour
     {
         return mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
-}
+}*/
