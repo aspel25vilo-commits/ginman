@@ -34,57 +34,15 @@ public class gunman : MonoBehaviour
 
         mousepos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
+        movementpos.Normalize();
 
 
-        /*Vector2 mouse_pos = GetWorldPositionFromMouse();
-        var p = transform.position;
-     
-        Vector2 dv = mouse_pos - new Vector2(p.x, p.y);
-      
-        float rot = Mathf.Atan2(dv.y, dv.x);
-        // float rot = dv.Rotation();
-        //transform.rotation = Rad2Qat(rot)
-        //transform.rotation = rot / 2 * Mathf.PI;
-        
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnProjectile();
-        }
-            
-
-
-
-        float moveX = 0f;
-        float moveY = 0f;
-        if (Input.GetKey(KeyCode.W))
-        {
-
-            moveY = 1f;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-
-            moveY = -1f;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-
-            moveX = -1f;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-           
-            moveX = 1f;
-
-        }
-        Vector3 move = new Vector3(moveX, moveY, 0f).normalized;
-        transform.Translate(move * playerspeed * Time.deltaTime);*/
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movementpos * playerspeed * Time.fixedDeltaTime);
+        
 
         Vector2 lookdir = mousepos - rb.position;
         float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
@@ -92,16 +50,7 @@ public class gunman : MonoBehaviour
            
     }
 
-    void SpawnProjectile()
-    {
-        Vector3 spawnPosition = transform.position + (transform.forward * spawnOffset);
 
-        GameObject newObject = Instantiate(projectilePrefab, spawnPosition, transform.rotation);
-    }
-    private void FollowMousePosition()
-    {
-        transform.position = GetWorldPositionFromMouse();
-    }
 
     private Vector2 GetWorldPositionFromMouse()
     {
