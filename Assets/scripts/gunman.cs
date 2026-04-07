@@ -30,7 +30,7 @@ public class gunman : MonoBehaviour
 
         movementpos.x = Input.GetAxisRaw("Horizontal");
         movementpos.y = Input.GetAxisRaw("Vertical");
-        Debug.Log($"movement {movementpos.x} {movementpos.y}");
+        //Debug.Log($"movement {movementpos.x} {movementpos.y}");
 
         mousepos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 

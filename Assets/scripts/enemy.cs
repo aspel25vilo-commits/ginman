@@ -19,12 +19,13 @@ public class enemy : MonoBehaviour
     private void Awake()
     {
 
-        player = GameObject.Find("player").gameObject;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        
    
         move = player.transform.position - transform.position;
         if (enhealth < 1)
@@ -38,16 +39,24 @@ public class enemy : MonoBehaviour
         while (true)
         {
 
-            rb.AddForce(move.normalized * Speed);
+            rb.AddForce(move * Speed);
+            Debug.Log($"move {move.normalized}");
+           
 
 
+            yield return new WaitForSeconds(attackdelay);
 
-
-            return null;
-            
 
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            Entakedamage();
+        }
     }
     private void Entakedamage()
     {
