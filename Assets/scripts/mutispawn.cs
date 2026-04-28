@@ -12,17 +12,22 @@ public class mutispawn : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
+
             spawnPoints.Add(child);
         }
 
-        InvokeRepeating("SpawnObject", 0f, spawnInterval);
+        Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+
+        Instantiate(objectToSpawn, randomSpawnPoint.position, randomSpawnPoint.rotation);
+        //InvokeRepeating("SpawnObject", 0f, spawnInterval);
     }
 
     void SpawnObject()
     {
-        if (spawnPoints.Count == 0) return;
-        {
-            
+        if (spawnPoints.Count == 0) 
+            return;
+        else {
+
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
             Instantiate(objectToSpawn, randomSpawnPoint.position, randomSpawnPoint.rotation);

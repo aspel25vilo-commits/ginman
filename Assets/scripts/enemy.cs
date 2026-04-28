@@ -3,12 +3,12 @@ using System.Collections;
 
 public class enemy : MonoBehaviour
 {
-    public float Speed = 100;
+    public float Speed = 1f;
     Vector2 move = new Vector2(1f, 1f);
     public GameObject player;
     public float enhealth = 1;
     Rigidbody2D rb;
-    public float attackdelay;
+    public float attackdelay = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +28,7 @@ public class enemy : MonoBehaviour
         
    
         move = player.transform.position - transform.position;
+        Debug.Log($"Move v {move}");
         if (enhealth < 1)
         {
             
@@ -39,8 +40,8 @@ public class enemy : MonoBehaviour
         while (true)
         {
 
-            rb.AddForce(move * Speed);
-            Debug.Log($"move {move.normalized}");
+            rb.AddForce(move.normalized * Speed);
+            Debug.Log($"{this.gameObject} move: {move}");
            
 
 
