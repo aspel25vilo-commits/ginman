@@ -1,67 +1,52 @@
 using UnityEngine;
-using System.Collections;
 
 public class enemy : MonoBehaviour
 {
-    public float Speed = 1f;
-    Vector2 move = new Vector2(1f, 1f);
-    public GameObject player;
+    public float Speed = 3f;
     public float enhealth = 1;
-    Rigidbody2D rb;
-    public float attackdelay = 1f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(Attackcoldown());
-    }
+
+    private Rigidbody2D rb;
+    private GameObject player;
+    private Vector2 moveDirection;
 
     private void Awake()
     {
-
         player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-   
-        move = player.transform.position - transform.position;
-        Debug.Log($"Move v {move}");
+        if (player != null)
+        {
+            moveDirection = ((Vector2)player.transform.position - rb.position).normalized;
+        }
+
         if (enhealth < 1)
         {
-            
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
-    private IEnumerator Attackcoldown()
+
+    private void FixedUpdate()
     {
-        while (true)
-        {
+        if (player == null) return;
 
-            rb.AddForce(move.normalized * Speed);
-            Debug.Log($"{this.gameObject} move: {move}");
-           
-
-
-            yield return new WaitForSeconds(attackdelay);
-
-
-        }
-
+        rb.MovePosition(rb.position + moveDirection * Speed * Time.fixedDeltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "bullet")
+        if (collision.gameObject.CompareTag("bullet"))
         {
-            Entakedamage();
+            TakeDamage();
         }
     }
-    private void Entakedamage()
+
+    /// <summary>Reduces enemy health by one hit.</summary>
+    private void TakeDamage()
     {
         enhealth--;
-
     }
 }

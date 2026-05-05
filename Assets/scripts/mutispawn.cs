@@ -19,7 +19,7 @@ public class mutispawn : MonoBehaviour
         Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
         Instantiate(objectToSpawn, randomSpawnPoint.position, randomSpawnPoint.rotation);
-        //InvokeRepeating("SpawnObject", 0f, spawnInterval);
+        InvokeRepeating("SpawnObject", 0f, spawnInterval);
     }
 
     void SpawnObject()

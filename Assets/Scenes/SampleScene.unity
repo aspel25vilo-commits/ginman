@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 959273301}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e3ca945212910498ab7a1f389ec10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerhealth: 1
   playerspeed: 5
   spawnPosition: {x: 0, y: 0, z: 0}
   projectilePrefab: {fileID: 9121945775261692492, guid: 8085041977e307c459b4ccf08212be4f, type: 3}
