@@ -1,9 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
+    public float healthtimer = 1f;
+    public float men = 1f;
+    public float Speedtimer = 1f;
     public float Speed = 3f;
     public float enhealth = 1;
+    private worldtime worldtime;
 
     private Rigidbody2D rb;
     private GameObject player;
@@ -11,6 +16,9 @@ public class enemy : MonoBehaviour
 
     private void Awake()
     {
+        StartCoroutine(upgrade());
+        StartCoroutine(upgradespeed());
+        worldtime = GetComponent<worldtime>();
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
     }
@@ -27,8 +35,31 @@ public class enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
+
+
+         
+    }
+    //använd worldtimer för att välja innan de spawnara vad deras health ska vara
+    private IEnumerator upgrade()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(healthtimer);
+            enhealth++;
+                    
+        }
+    }
+    private IEnumerator upgradespeed()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Speedtimer);
+            
+            Speed++;
+            
+        }
+    }
     private void FixedUpdate()
     {
         if (player == null) return;

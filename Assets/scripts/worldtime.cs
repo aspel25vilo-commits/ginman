@@ -15,5 +15,12 @@ public class worldtime : MonoBehaviour
     {
 
     }
-    //private IEnumerator Timers()
+    private IEnumerator Timers()
+    {
+        while (true)
+        {
+            timer++;
+            yield return new WaitForSeconds(1);
+        }
+    }
 }
