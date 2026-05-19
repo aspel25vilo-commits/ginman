@@ -1,14 +1,20 @@
 using System.Collections;
+using System.Reflection;
+using System.Threading;
 using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    public float healthtimer = 1f;
+
     public float men = 1f;
-    public float Speedtimer = 1f;
+
     public float Speed = 3f;
     public float enhealth = 1;
-    private worldtime worldtime;
+    public GameObject worldtime;
+    public float timey;
+    public float pointer;
+    public GameObject points;
+    
 
     private Rigidbody2D rb;
     private GameObject player;
@@ -16,50 +22,47 @@ public class enemy : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(upgrade());
-        StartCoroutine(upgradespeed());
-        worldtime = GetComponent<worldtime>();
+        worldtime = GameObject.FindGameObjectWithTag("timer");
+        points = GameObject.FindGameObjectWithTag("pointer");
+        pointer = points.GetComponent<points>().point;
+        
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        timey = worldtime.GetComponent<worldtime>().timer;
+        if (timey >= 12)
+        {
+            enhealth += timey/12;
+        }
+        if (timey >= 15)
+        {
+            Speed += timey/15;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (player != null)
         {
+            
             moveDirection = ((Vector2)player.transform.position - rb.position).normalized;
         }
 
         if (enhealth < 1)
         {
+            pointer ++;
             Destroy(gameObject);
+            
         }
 
 
 
          
     }
-    //använd worldtimer för att välja innan de spawnara vad deras health ska vara
-    private IEnumerator upgrade()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(healthtimer);
-            enhealth++;
-                    
-        }
-    }
-    private IEnumerator upgradespeed()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(Speedtimer);
-            
-            Speed++;
-            
-        }
-    }
+    //anvï¿½nd worldtimer fï¿½r att vï¿½lja innan de spawnara vad deras health ska vara
+
+
     private void FixedUpdate()
     {
         if (player == null) return;

@@ -102,8 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4a14aca5e5d6945b16641311a63f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthtimer: 100
+  men: 1
+  Speedtimer: 100
   Speed: 3
   enhealth: 1
+  worldtime: {fileID: 0}
+  timey: 0
 --- !u!50 &6649974716750278055
 Rigidbody2D:
   serializedVersion: 5

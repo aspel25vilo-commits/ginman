@@ -3,7 +3,7 @@ using System.Collections;
 
 public class worldtime : MonoBehaviour
 {
-    float timer = 0;
+    public float timer = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +15,7 @@ public class worldtime : MonoBehaviour
     {
 
     }
-    private IEnumerator Timers()
+    public IEnumerator Timers()
     {
         while (true)
         {
