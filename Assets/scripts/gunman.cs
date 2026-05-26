@@ -12,20 +12,33 @@ public class gunman : MonoBehaviour
     public float spawnOffset = 1.0f;
     private Camera mainCamera;
     public float pointer;
-    public GameObject points;
+    public GameObject Level;
+    public float damage = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mainCamera = Camera.main;
-        points = GameObject.FindGameObjectWithTag("pointer");
-        pointer = points.GetComponent<points>().point;
+        Level = GameObject.FindGameObjectWithTag("pointer");
+        pointer = Level.GetComponent<level>().point;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (pointer >= 10)
+        {
+            int levelup = Random.Range(1, 2);
+            if (levelup == 1)
+            {
+                playerspeed++;
+            }
+            if (levelup == 2)
+            {
+                damage++;
+            }
+        }
+        
         Vector2 mouse_pos = GetWorldPositionFromMouse();
         var p = transform.position;
      

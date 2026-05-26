@@ -517,6 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225784912}
   - component: {fileID: 1225784911}
+  - component: {fileID: 1225784913}
   m_Layer: 0
   m_Name: pointer
   m_TagString: pointer
@@ -552,6 +553,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225784913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225784910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab386b990111cd243a12c64fd95e3a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  point: 0
 --- !u!1 &1242885775
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +688,7 @@ GameObject:
   - component: {fileID: 1919810248}
   - component: {fileID: 1919810250}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: tank
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,7 +712,8 @@ MonoBehaviour:
   mouse: {fileID: 0}
   spawnOffset: 10
   pointer: 0
-  points: {fileID: 0}
+  Level: {fileID: 0}
+  damage: 1
 --- !u!212 &1919810246
 SpriteRenderer:
   m_ObjectHideFlags: 0

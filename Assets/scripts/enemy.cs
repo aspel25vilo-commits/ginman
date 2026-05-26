@@ -13,19 +13,24 @@ public class enemy : MonoBehaviour
     public GameObject worldtime;
     public float timey;
     public float pointer;
-    public GameObject points;
-    
+    public GameObject damge;
+    public float damger;
+    public float realdamge;
+
+
 
     private Rigidbody2D rb;
     private GameObject player;
     private Vector2 moveDirection;
+    public GameObject Level;
 
     private void Awake()
     {
         worldtime = GameObject.FindGameObjectWithTag("timer");
-        points = GameObject.FindGameObjectWithTag("pointer");
-        pointer = points.GetComponent<points>().point;
+        Level = GameObject.FindGameObjectWithTag("pointer");
+        damge = GameObject.FindGameObjectWithTag("tank");
         
+
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         timey = worldtime.GetComponent<worldtime>().timer;
@@ -43,6 +48,8 @@ public class enemy : MonoBehaviour
     void Update()
     {
 
+        damger = damge.GetComponent<gunman>().damage;
+        
         if (player != null)
         {
             
@@ -51,7 +58,8 @@ public class enemy : MonoBehaviour
 
         if (enhealth < 1)
         {
-            pointer ++;
+            
+            Level.GetComponent<level>().addpoints(1);
             Destroy(gameObject);
             
         }
@@ -81,6 +89,6 @@ public class enemy : MonoBehaviour
     /// <summary>Reduces enemy health by one hit.</summary>
     private void TakeDamage()
     {
-        enhealth--;
+        realdamge = enhealth - damger;
     }
 }
